@@ -1,0 +1,448 @@
+﻿<Window x:Class="Pictograph.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pictograph"
+        mc:Ignorable="d"
+        Title="Pictograph" Height="350" Width="525" WindowState="Maximized">
+    <Window.Resources>
+        <Style x:Key="tileStyle" TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Rectangle Stroke="LightSlateGray" StrokeThickness="3" MinHeight="50" MinWidth="50" Height="100" Width="100" Fill="Silver"></Rectangle>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>            
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.LayoutTransform>
+                    <ScaleTransform ScaleX="{Binding ElementName=floorScaleSlider,Path=Value}" ScaleY="{Binding ElementName=floorScaleSlider,Path=Value}" />
+                </Grid.LayoutTransform>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="0" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="1" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="2" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="3" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="4" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="5" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="6" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="7" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="8" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="9" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="10" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="11" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="12" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="13" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="14" Grid.Column="21" />
+
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="0" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="1" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="2" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="3" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="4" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="5" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="6" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="7" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="8" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="9" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="10" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="11" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="12" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="13" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="14" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="15" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="16" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="17" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="18" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="19" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="20" />
+                <Button Style="{StaticResource tileStyle}" Grid.Row="15" Grid.Column="21" />
+            </Grid>
+        </ScrollViewer>
+        <StackPanel Grid.Column="1">
+            <TextBlock>Zoom:</TextBlock>
+            <Slider x:Name="floorScaleSlider" Value="1" Minimum="0.5" Maximum="3" IsSnapToTickEnabled="True" TickPlacement="BottomRight" Ticks="0.5, 0.8, 1, 1.5, 2, 2.5, 3">
+            </Slider>
+        </StackPanel>
+    </Grid>
+</Window>
