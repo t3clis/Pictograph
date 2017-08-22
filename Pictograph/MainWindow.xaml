@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Pictograph"
         xmlns:puc="clr-namespace:PictographControls;assembly=PictographControls"
         mc:Ignorable="d"
-        Title="Pictograph" Height="350" Width="525" WindowState="Maximized">
+        Title="Pictograph" Height="600" Width="800"
+        KeyUp="Window_KeyUp">
     <Window.Resources>
     </Window.Resources>
 
@@ -16,7 +17,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <ScrollViewer x:Name="sViewport" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Canvas Height="1600" Width="2200" x:Name="gViewport">
+            <Canvas Height="1600" Width="2200" x:Name="gViewport" Drop="gViewport_Drop" DragEnter="gViewport_DragEnter" AllowDrop="true">
                 <Canvas.LayoutTransform>
                     <ScaleTransform ScaleX="{Binding ElementName=floorScaleSlider,Path=Value}" ScaleY="{Binding ElementName=floorScaleSlider,Path=Value}" />
                 </Canvas.LayoutTransform>
@@ -26,6 +27,19 @@
             <TextBlock>Zoom:</TextBlock>
             <Slider x:Name="floorScaleSlider" Value="1" Minimum="0.5" Maximum="3" IsSnapToTickEnabled="True" TickPlacement="BottomRight" Ticks="0.5, 0.8, 1, 1.5, 2, 2.5, 3">
             </Slider>
+            <Rectangle Height="20"></Rectangle>
+            <TextBlock>Elements:</TextBlock>
+            <Rectangle Height="20"></Rectangle>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ListView x:Name="listTools" PreviewMouseLeftButtonDown="listTools_PreviewMouseLeftButtonDown" PreviewMouseMove="listTools_PreviewMouseMove">
+                    <ListViewItem x:Name="liSurvivor">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/survivor_token.png"></Image>
+                            <TextBlock Margin="5" VerticalAlignment="Center">Survivor</TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </ScrollViewer>
             <Rectangle Height="20"></Rectangle>
             <Button Height="40" Content="Snap" Click="Snap_Click"></Button>
             <TextBlock x:Name="tSnapResult" FontWeight="Bold"></TextBlock>

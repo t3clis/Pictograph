@@ -48,6 +48,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SurvivorToken.xaml.cs">
+      <DependentUpon>SurvivorToken.xaml</DependentUpon>
+    </Compile>
     <Page Include="TiledButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -56,6 +59,10 @@
       <DependentUpon>TiledButton.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SurvivorToken.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
