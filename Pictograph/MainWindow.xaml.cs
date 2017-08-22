@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PictographControls;
 
 namespace Pictograph
 {
@@ -30,6 +31,15 @@ namespace Pictograph
             InitializeComponent();
             SaveDirectory = GetSaveDirectory();
             Icon = new BitmapImage(new Uri("Resources/Pictograph.png", UriKind.Relative));
+
+            for (int i = 0; i < 22; i++)
+                for (int j = 0; j < 16; j++)
+                {
+                    TiledButton t = new TiledButton();
+                    Canvas.SetLeft(t, i * 100);
+                    Canvas.SetTop(t, j * 100);
+                    gViewport.Children.Add(t);
+                }
             floorScaleSlider.MouseDoubleClick += new MouseButtonEventHandler(RestoreScalingFactor);
         }
 
@@ -81,7 +91,7 @@ namespace Pictograph
 
             do
             {
-                string fn = file_prefix +  i++.ToString().PadLeft(3, '0') + ".png";
+                string fn = file_prefix + i++.ToString().PadLeft(3, '0') + ".png";
 
                 if (!File.Exists(fn))
                 {
