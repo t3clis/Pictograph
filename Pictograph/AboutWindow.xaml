@@ -1,0 +1,19 @@
+﻿<Window x:Class="Pictograph.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pictograph"
+        mc:Ignorable="d"
+        Title="About Pictograph" Height="500" Width="350" ResizeMode="NoResize">
+    <StackPanel>
+        <Rectangle Height="20" />
+        <Image Source="Resources/pictograph.png" Height="100" Width="100"></Image>
+        <Rectangle Height="20" />
+        <TextBlock Margin="10" x:Name="txVersion" TextWrapping="Wrap" FontSize="10" FontFamily="Arial" />
+        <Rectangle Height="8" />
+        <TextBlock TextWrapping="Wrap" Margin="10"  FontSize="10" FontFamily="Arial" Text="This is an ENTIRELY UNOFFICIAL fan project, in no way endorsed by Adam Poots games. If you want to contribute to Pictograph, please consider donating using the link below." />
+        <Rectangle Height="30" />
+        <Image Source="Resources/donate.gif" Height="35" MouseLeftButtonUp="Image_MouseLeftButtonUp" />
+    </StackPanel>
+</Window>

@@ -23,32 +23,48 @@
                 </Canvas.LayoutTransform>
             </Canvas>
         </ScrollViewer>
-        <StackPanel Margin="10" Grid.Column="1">
-            <TextBlock>Zoom:</TextBlock>
-            <Slider x:Name="floorScaleSlider" Value="1" Minimum="0.5" Maximum="3" IsSnapToTickEnabled="True" TickPlacement="BottomRight" Ticks="0.5, 0.8, 1, 1.5, 2, 2.5, 3">
-            </Slider>
-            <Rectangle Height="20"></Rectangle>
-            <TextBlock>Elements:</TextBlock>
-            <Rectangle Height="20"></Rectangle>
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ListView x:Name="listTools" GiveFeedback="gViewport_GiveFeedback" PreviewMouseLeftButtonDown="listTools_PreviewMouseLeftButtonDown" PreviewMouseMove="listTools_PreviewMouseMove">
-                    <ListViewItem x:Name="liSurvivor">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="Resources/survivor_token.png"></Image>
-                            <TextBlock Margin="5" VerticalAlignment="Center">Survivor</TextBlock>
-                        </StackPanel>
-                    </ListViewItem>
-                </ListView>
-            </ScrollViewer>
-            <Rectangle Height="20"></Rectangle>
-            <Button Height="40" Content="Snap" Click="Snap_Click"></Button>
-            <TextBlock x:Name="tSnapResult" FontWeight="Bold"></TextBlock>
-            <Rectangle Height="60"></Rectangle>
-            <Grid x:Name="bDelete" Visibility="Hidden">
-                <Rectangle  Fill="Red" Height="80" Drop="bDelete_Drop" DragEnter="bDelete_DragEnter" AllowDrop="True">
-                </Rectangle>
-                <TextBlock Foreground="White" FontWeight="Bold" FontFamily="Arial" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Drop="bDelete_Drop" DragEnter="bDelete_DragEnter" AllowDrop="True">Delete</TextBlock>
-            </Grid>
-        </StackPanel>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Margin="10" Grid.Row="0">
+                <TextBlock>Zoom:</TextBlock>
+                <Slider x:Name="floorScaleSlider" Value="1" Minimum="0.5" Maximum="3" IsSnapToTickEnabled="True" TickPlacement="BottomRight" Ticks="0.5, 0.8, 1, 1.5, 2, 2.5, 3">
+                </Slider>
+                <Rectangle Height="20"></Rectangle>
+                <TextBlock>Elements:</TextBlock>
+                <Rectangle Height="20"></Rectangle>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView x:Name="listTools" GiveFeedback="gViewport_GiveFeedback" PreviewMouseLeftButtonDown="listTools_PreviewMouseLeftButtonDown" PreviewMouseMove="listTools_PreviewMouseMove">
+                        <ListViewItem x:Name="liSurvivor">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources/survivor_token.png"></Image>
+                                <TextBlock Margin="5" VerticalAlignment="Center">Survivor</TextBlock>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="liMonster50mm">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Resources/monster50mm.png"></Image>
+                                <TextBlock Margin="5" VerticalAlignment="Center">Monster (50mm base)</TextBlock>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </ScrollViewer>
+                <Rectangle Height="20"></Rectangle>
+                <Button Height="40" Content="Snap" Click="Snap_Click"></Button>
+                <TextBlock x:Name="tSnapResult" FontWeight="Bold"></TextBlock>
+                <Rectangle Height="60"></Rectangle>
+                <Grid x:Name="bDelete" Visibility="Hidden">
+                    <Rectangle  Fill="Red" Height="80" Drop="bDelete_Drop" DragEnter="bDelete_DragEnter" AllowDrop="True">
+                    </Rectangle>
+                    <TextBlock Foreground="White" FontWeight="Bold" FontFamily="Arial" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Drop="bDelete_Drop" DragEnter="bDelete_DragEnter" AllowDrop="True">Delete</TextBlock>
+                </Grid>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <TextBlock MouseLeftButtonUp="TextBox_MouseLeftButtonUp" TextAlignment="Right" Text="About..." Foreground="Blue" TextDecorations="Underline" Margin="0 0 8 0" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

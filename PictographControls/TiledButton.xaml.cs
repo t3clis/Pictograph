@@ -22,6 +22,8 @@ namespace PictographControls
         Dash,
         BlindSpot,
         SolidObject,
+        Hole,
+        Block,
         Range
     }
 
@@ -65,6 +67,18 @@ namespace PictographControls
                     }
                     break;
                 case TiledButtonState.SolidObject:
+                    {
+                        b.Style = (Style)FindResource("styleHole");
+                        TileState = TiledButtonState.Hole;
+                    }
+                    break;
+                case TiledButtonState.Hole:
+                    {
+                        b.Style = (Style)FindResource("styleBlock");
+                        TileState = TiledButtonState.Block;
+                    }
+                    break;
+                case TiledButtonState.Block:
                     {
                         b.Style = (Style)FindResource("styleRange");
                         TileState = TiledButtonState.Range;

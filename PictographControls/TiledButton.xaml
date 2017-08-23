@@ -107,6 +107,46 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="styleHole" TargetType="Button">
+            <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="BorderBrush" Value="#FF000000"></Setter>
+            <Setter Property="Background" Value="#FF000000"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#FF000000" BorderThickness="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#FF000000"></Setter>
+                    <Setter Property="Background" Value="#FF000000"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="styleBlock" TargetType="Button">
+            <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="BorderBrush" Value="#FFFFFFFF"></Setter>
+            <Setter Property="Background" Value="#FFFFFFFF"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#FFFFFFFF" BorderThickness="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#FFFFFFFF"></Setter>
+                    <Setter Property="Background" Value="#FFFFFFFF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="styleRange" TargetType="Button">
             <Setter Property="BorderThickness" Value="3" />
             <Setter Property="BorderBrush" Value="#FF41C94E"></Setter>

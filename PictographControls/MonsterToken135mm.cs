@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace PictographControls
 {
-    public enum TokenColor
+    public enum SurvivorColor
     {
         Token,
         Red,
@@ -31,7 +31,7 @@ namespace PictographControls
     public partial class SurvivorToken : UserControl
     {
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(SurvivorToken));
-        public static readonly DependencyProperty AppearanceProperty = DependencyProperty.Register("Appearance", typeof(TokenColor), typeof(SurvivorToken));
+        public static readonly DependencyProperty AppearanceProperty = DependencyProperty.Register("Appearance", typeof(SurvivorColor), typeof(SurvivorToken));
 
         private DateTime _downPress;
 
@@ -54,64 +54,64 @@ namespace PictographControls
             }
         }
 
-        public TokenColor Appearance
+        public SurvivorColor Appearance
         {
-            get { return (TokenColor)GetValue(AppearanceProperty); }
+            get { return (SurvivorColor)GetValue(AppearanceProperty); }
             set
             {
                 SolidColorBrush fill, stroke;
 
                 switch (value)
                 {
-                    case TokenColor.Black:
+                    case SurvivorColor.Black:
                         {
                             fill = (SolidColorBrush)FindResource("brushBlackFill");
                             stroke = (SolidColorBrush)FindResource("brushBlackStroke");
                         }
                         break;
-                    case TokenColor.Blue:
+                    case SurvivorColor.Blue:
                         {
                             fill = (SolidColorBrush)FindResource("brushBlueFill");
                             stroke = (SolidColorBrush)FindResource("brushBlueStroke");
                         }
                         break;
-                    case TokenColor.Brown:
+                    case SurvivorColor.Brown:
                         {
                             fill = (SolidColorBrush)FindResource("brushBrownFill");
                             stroke = (SolidColorBrush)FindResource("brushBrownStroke");
                         }
                         break;
-                    case TokenColor.Green:
+                    case SurvivorColor.Green:
                         {
                             fill = (SolidColorBrush)FindResource("brushGreenFill");
                             stroke = (SolidColorBrush)FindResource("brushGreenStroke");
                         }
                         break;
-                    case TokenColor.Grey:
+                    case SurvivorColor.Grey:
                         {
                             fill = (SolidColorBrush)FindResource("brushGreyFill");
                             stroke = (SolidColorBrush)FindResource("brushGreyStroke");
                         }
                         break;
-                    case TokenColor.Pink:
+                    case SurvivorColor.Pink:
                         {
                             fill = (SolidColorBrush)FindResource("brushPinkFill");
                             stroke = (SolidColorBrush)FindResource("brushPinkStroke");
                         }
                         break;
-                    case TokenColor.Red:
+                    case SurvivorColor.Red:
                         {
                             fill = (SolidColorBrush)FindResource("brushRedFill");
                             stroke = (SolidColorBrush)FindResource("brushRedStroke");
                         }
                         break;
-                    case TokenColor.Yellow:
+                    case SurvivorColor.Yellow:
                         {
                             fill = (SolidColorBrush)FindResource("brushYellowFill");
                             stroke = (SolidColorBrush)FindResource("brushYellowStroke");
                         }
                         break;
-                    case TokenColor.Token:
+                    case SurvivorColor.Token:
                     default:
                         {
                             fill = (SolidColorBrush)FindResource("brushTokenFill");
@@ -134,17 +134,17 @@ namespace PictographControls
             InitializeComponent();
             DataContext = this;
             Text = "S";
-            Appearance = TokenColor.Token;
+            Appearance = SurvivorColor.Token;
         }
 
         private void tokenBox_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             int appearanceValue = (int)Appearance;
             appearanceValue++;
-            if (Enum.IsDefined(typeof(TokenColor), appearanceValue))
-                Appearance = (TokenColor)appearanceValue;
+            if (Enum.IsDefined(typeof(SurvivorColor), appearanceValue))
+                Appearance = (SurvivorColor)appearanceValue;
             else
-                Appearance = TokenColor.Token;
+                Appearance = SurvivorColor.Token;
         }
 
         private void tokenText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

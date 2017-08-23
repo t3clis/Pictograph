@@ -127,6 +127,12 @@ namespace Pictograph
                     item = new SurvivorToken();
                     CreateDragDropWindow((SurvivorToken)item);
                 }
+                else if (liMonster50mm.IsSelected)
+                {
+                    itemFormat = "monster50mm";
+                    item = new MonsterToken50mm();
+                    CreateDragDropWindow((MonsterToken50mm)item);
+                }
 
                 if (item != null)
                 {
@@ -152,6 +158,25 @@ namespace Pictograph
 
                 top = (((int)dropPoint.Y) / 100) * 100;
                 left = (((int)dropPoint.X) / 100) * 100;
+
+                Canvas.SetTop(item, top);
+                Canvas.SetLeft(item, left);
+                gViewport.Children.Add(item);
+                _dragdropWindow.Close();
+            }
+            else if (e.Data.GetDataPresent("monster50mm"))
+            {
+                int top, left;
+                MonsterToken50mm item = e.Data.GetData("monster50mm") as MonsterToken50mm;
+
+                top = (((int)dropPoint.Y) / 100) * 100;
+                left = (((int)dropPoint.X) / 100) * 100;
+
+                if (top + 200 > 1600)
+                    top = 1400;
+
+                if (left + 200 > 2200)
+                    left = 2000;
 
                 Canvas.SetTop(item, top);
                 Canvas.SetLeft(item, left);
@@ -214,14 +239,21 @@ namespace Pictograph
             _dragdropWindow.ShowInTaskbar = false;
 
             Rectangle r = new Rectangle();
+
             if (dragElement is SurvivorToken)
             {
                 r.Width = 100;
                 r.Height = 100;
                 r.Fill = new VisualBrush(dragElement);
             }
+            else if (dragElement is MonsterToken50mm)
+            {
+                r.Width = 200;
+                r.Height = 200;
+                r.Fill = new VisualBrush(dragElement);
+            }
 
-            
+
 
             _dragdropWindow.Content = r;
 
@@ -241,7 +273,6 @@ namespace Pictograph
 
         private void bDelete_Drop(object sender, DragEventArgs e)
         {
-            Point dropPoint = e.GetPosition(gViewport);
             _dragdropWindow.Close();
         }
 
@@ -284,13 +315,20 @@ namespace Pictograph
 
                 FrameworkElement element = FindRelevantAncestor(directlyOver, gViewport);
 
-                
+
 
                 if (element is SurvivorToken)
                 {
                     itemFormat = "survivor";
                     item = element;
                     CreateDragDropWindow((SurvivorToken)item);
+                    gViewport.Children.Remove(element);
+                }
+                else if (element is MonsterToken50mm)
+                {
+                    itemFormat = "monster50mm";
+                    item = element;
+                    CreateDragDropWindow((MonsterToken50mm)item);
                     gViewport.Children.Remove(element);
                 }
 
@@ -323,6 +361,12 @@ namespace Pictograph
             }
 
             return lastElement;
+        }
+
+        private void TextBox_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            AboutWindow window = new AboutWindow();
+            window.ShowDialog();
         }
     }
 }

@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="PictographControls.SurvivorToken"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PictographControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="100">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="brushTokenFill">#FFE6E6E6</SolidColorBrush>
+        <SolidColorBrush x:Key="brushTokenStroke">#FFA916B0</SolidColorBrush>
+        <SolidColorBrush x:Key="brushBlackFill">#000000</SolidColorBrush>
+        <SolidColorBrush x:Key="brushBlackStroke">#FFDEDEDE</SolidColorBrush>
+        <SolidColorBrush x:Key="brushBlueFill">#FF1E359B</SolidColorBrush>
+        <SolidColorBrush x:Key="brushBlueStroke">#FFCBD4F9</SolidColorBrush>
+        <SolidColorBrush x:Key="brushBrownFill">#FF5D1316</SolidColorBrush>
+        <SolidColorBrush x:Key="brushBrownStroke">#FFC5AB66</SolidColorBrush>
+        <SolidColorBrush x:Key="brushGreenFill">#FF32764E</SolidColorBrush>
+        <SolidColorBrush x:Key="brushGreenStroke">#FF89E2AD</SolidColorBrush>
+        <SolidColorBrush x:Key="brushGreyFill">#FF959595</SolidColorBrush>
+        <SolidColorBrush x:Key="brushGreyStroke">#FFDEDEDE</SolidColorBrush>
+        <SolidColorBrush x:Key="brushPinkFill">#FFDCABAB</SolidColorBrush>
+        <SolidColorBrush x:Key="brushPinkStroke">#FFBC49C1</SolidColorBrush>
+        <SolidColorBrush x:Key="brushRedFill">#FFAC0523</SolidColorBrush>
+        <SolidColorBrush x:Key="brushRedStroke">#FFEC758B</SolidColorBrush>
+        <SolidColorBrush x:Key="brushYellowFill">#FFF5ED44</SolidColorBrush>
+        <SolidColorBrush x:Key="brushYellowStroke">#FFA69F0D</SolidColorBrush>
+    </UserControl.Resources>
+    <Canvas Height="100" Width="100">
+        <Ellipse MouseRightButtonUp="tokenBox_MouseRightButtonUp" x:Name="tokenBox" Height="100" Width="100" Fill="{StaticResource brushTokenFill}" Stroke="{StaticResource brushTokenStroke}" StrokeThickness="6" />
+        <TextBlock MouseLeftButtonDown="tokenText_MouseLeftButtonDown" MouseLeftButtonUp="tokenText_MouseLeftButtonUp" MouseRightButtonUp="tokenBox_MouseRightButtonUp" x:Name="tokenText" Canvas.Top="25" Height="75" Width="100" TextAlignment="Center" FontSize="48" FontWeight="Bold" FontFamily="Arial" Foreground="{StaticResource brushTokenStroke}" Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:SurvivorToken}}, Path=Text}">
+        </TextBlock>
+        <TextBox x:Name="txName" Canvas.Top="25" Height="75" Width="100" MaxLength="2" FontFamily="Arial" FontSize="48" TextAlignment="Center" FontWeight="Bold" Foreground="{StaticResource brushTokenStroke}" Background="Transparent" Visibility="Hidden" KeyUp="txName_KeyUp" LostFocus="txName_LostFocus"></TextBox>
+    </Canvas>
+</UserControl>
