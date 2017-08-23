@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PictographControls;
 using System.Timers;
+using System.Runtime.InteropServices;
 
 namespace Pictograph
 {
@@ -24,6 +25,7 @@ namespace Pictograph
         private const string DEFAULT_FILE = "pg";
 
         private Point _toolDragStart;
+        private Window _dragdropWindow;
 
         public string SaveDirectory { get; set; }
 
@@ -123,13 +125,18 @@ namespace Pictograph
                 {
                     itemFormat = "survivor";
                     item = new SurvivorToken();
+                    CreateDragDropWindow((SurvivorToken)item);
                 }
 
                 if (item != null)
                 {
+                    DragDropEffects de;
                     // Initialize the drag & drop operation
                     DataObject dragData = new DataObject(itemFormat, item);
-                    DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
+                    de = DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
+
+                    if (de == DragDropEffects.None)
+                        _dragdropWindow?.Close();
                 }
             }
         }
@@ -149,12 +156,13 @@ namespace Pictograph
                 Canvas.SetTop(item, top);
                 Canvas.SetLeft(item, left);
                 gViewport.Children.Add(item);
+                _dragdropWindow.Close();
             }
         }
 
         private void gViewport_DragEnter(object sender, DragEventArgs e)
         {
-            if (!e.Data.GetDataPresent("survivor") || sender == e.Source)
+            if (!IsDataAcceptable(e) || sender == e.Source)
             {
                 e.Effects = DragDropEffects.None;
             }
@@ -166,16 +174,32 @@ namespace Pictograph
                 Snap_Click(this, e);
         }
 
-        /*
-         *         private void CardList_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool GetCursorPos(ref Win32Point pt);
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct Win32Point
         {
-            // update the position of the visual feedback item
+            public Int32 X;
+            public Int32 Y;
+        };
+        public static Point GetMousePosition()
+        {
+            Win32Point w32Mouse = new Win32Point();
+            GetCursorPos(ref w32Mouse);
+            return new Point(w32Mouse.X, w32Mouse.Y);
+        }
+
+        private void gViewport_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+        {
             Win32Point w32Mouse = new Win32Point();
             GetCursorPos(ref w32Mouse);
 
             this._dragdropWindow.Left = w32Mouse.X;
             this._dragdropWindow.Top = w32Mouse.Y;
         }
+
 
         private void CreateDragDropWindow(Visual dragElement)
         {
@@ -190,10 +214,20 @@ namespace Pictograph
             _dragdropWindow.ShowInTaskbar = false;
 
             Rectangle r = new Rectangle();
-            r.Width = ((FrameworkElement)dragElement).ActualWidth;
-            r.Height = ((FrameworkElement)dragElement).ActualHeight;
-            r.Fill = new VisualBrush(dragElement);
-            this._dragdropWindow.Content = r;
+            if (dragElement is SurvivorToken)
+            {
+                r.Width = 100;
+                r.Height = 100;
+                r.Fill = new VisualBrush(dragElement);
+            }
+
+            
+
+            _dragdropWindow.Content = r;
+
+            ScaleTransform scale = new ScaleTransform(floorScaleSlider.Value, floorScaleSlider.Value);
+            r.LayoutTransform = scale;
+            r.UpdateLayout();
 
 
             Win32Point w32Mouse = new Win32Point();
@@ -204,6 +238,91 @@ namespace Pictograph
             this._dragdropWindow.Top = w32Mouse.Y;
             this._dragdropWindow.Show();
         }
-         * */
+
+        private void bDelete_Drop(object sender, DragEventArgs e)
+        {
+            Point dropPoint = e.GetPosition(gViewport);
+            _dragdropWindow.Close();
+        }
+
+        private void bDelete_DragEnter(object sender, DragEventArgs e)
+        {
+            if (!IsDataAcceptable(e) || sender == e.Source)
+            {
+                e.Effects = DragDropEffects.None;
+            }
+        }
+
+        private bool IsDataAcceptable(DragEventArgs e)
+        {
+            bool result = e.Data.GetDataPresent("survivor");
+            result |= e.Data.GetDataPresent("monster50mm");
+            result |= e.Data.GetDataPresent("monster100mm");
+            result |= e.Data.GetDataPresent("monster135mm");
+
+            return result;
+        }
+
+        private void gViewport_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            // Get the current mouse position
+            Point mousePos = e.GetPosition(null);
+            Point posInCanvas = e.GetPosition(gViewport);
+
+            Vector diff = _toolDragStart - mousePos;
+            string itemFormat = null;
+            object item = null;
+
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                FrameworkElement directlyOver = (FrameworkElement)Mouse.DirectlyOver;
+
+                if (directlyOver is TextBox)
+                    return;
+
+                FrameworkElement element = FindRelevantAncestor(directlyOver, gViewport);
+
+                
+
+                if (element is SurvivorToken)
+                {
+                    itemFormat = "survivor";
+                    item = element;
+                    CreateDragDropWindow((SurvivorToken)item);
+                    gViewport.Children.Remove(element);
+                }
+
+                if (item != null)
+                {
+                    DragDropEffects de;
+                    // Initialize the drag & drop operation
+                    DataObject dragData = new DataObject(itemFormat, item);
+                    bDelete.Visibility = Visibility.Visible;
+                    de = DragDrop.DoDragDrop(gViewport, dragData, DragDropEffects.Move);
+
+                    if (de == DragDropEffects.None)
+                        _dragdropWindow?.Close();
+                    bDelete.Visibility = Visibility.Hidden;
+                }
+            }
+        }
+
+        private FrameworkElement FindRelevantAncestor(FrameworkElement element, FrameworkElement stopAt)
+        {
+            FrameworkElement lastElement = null;
+            FrameworkElement currentElement = element;
+            while (currentElement != stopAt)
+            {
+                if (currentElement == null)
+                    return null;
+
+                lastElement = currentElement;
+                currentElement = (FrameworkElement)currentElement.Parent;
+            }
+
+            return lastElement;
+        }
     }
 }
