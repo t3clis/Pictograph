@@ -48,9 +48,30 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MonsterToken100mm.xaml.cs">
+      <DependentUpon>MonsterToken100mm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MonsterToken135mm.xaml.cs">
+      <DependentUpon>MonsterToken135mm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MonsterToken50mm.xaml.cs">
+      <DependentUpon>MonsterToken50mm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SurvivorToken.xaml.cs">
       <DependentUpon>SurvivorToken.xaml</DependentUpon>
     </Compile>
+    <Page Include="MonsterToken100mm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MonsterToken135mm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MonsterToken50mm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TiledButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

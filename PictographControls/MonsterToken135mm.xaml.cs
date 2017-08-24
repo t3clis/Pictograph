@@ -16,15 +16,15 @@ using System.Windows.Shapes;
 
 namespace PictographControls
 {
-    public partial class MonsterToken50mm : UserControl
+    public partial class MonsterToken135mm : UserControl
     {
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(MonsterToken50mm));
-        public static readonly DependencyProperty AppearanceProperty = DependencyProperty.Register("Appearance", typeof(TokenColor), typeof(MonsterToken50mm));
-        public static readonly DependencyProperty FacingNorthProperty = DependencyProperty.Register("FacingNorth", typeof(Visibility), typeof(MonsterToken50mm));
-        public static readonly DependencyProperty FacingEastProperty = DependencyProperty.Register("FacingEast", typeof(Visibility), typeof(MonsterToken50mm));
-        public static readonly DependencyProperty FacingWestProperty = DependencyProperty.Register("FacingWest", typeof(Visibility), typeof(MonsterToken50mm));
-        public static readonly DependencyProperty FacingSouthProperty = DependencyProperty.Register("FacingSouth", typeof(Visibility), typeof(MonsterToken50mm));
-        public static readonly DependencyProperty FacingProperty = DependencyProperty.Register("Facing", typeof(MonsterFacing), typeof(MonsterToken50mm));
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(MonsterToken135mm));
+        public static readonly DependencyProperty AppearanceProperty = DependencyProperty.Register("Appearance", typeof(TokenColor), typeof(MonsterToken135mm));
+        public static readonly DependencyProperty FacingNorthProperty = DependencyProperty.Register("FacingNorth", typeof(Visibility), typeof(MonsterToken135mm));
+        public static readonly DependencyProperty FacingEastProperty = DependencyProperty.Register("FacingEast", typeof(Visibility), typeof(MonsterToken135mm));
+        public static readonly DependencyProperty FacingWestProperty = DependencyProperty.Register("FacingWest", typeof(Visibility), typeof(MonsterToken135mm));
+        public static readonly DependencyProperty FacingSouthProperty = DependencyProperty.Register("FacingSouth", typeof(Visibility), typeof(MonsterToken135mm));
+        public static readonly DependencyProperty FacingProperty = DependencyProperty.Register("Facing", typeof(MonsterFacing), typeof(MonsterToken135mm));
         private DateTime _downPress;
         private DateTime _downPressRight;
 
@@ -153,8 +153,10 @@ namespace PictographControls
                     formattedValue = value.ToUpper();
                 else if (value.Length == 2)
                     formattedValue = value.Substring(0, 1).ToUpper() + value.Substring(1, 1);
-                else
+                else if(value.Length == 3)
                     formattedValue = value.Substring(0, 1).ToUpper() + value.Substring(1, 2);
+                else
+                    formattedValue = value.Substring(0, 1).ToUpper() + value.Substring(1, 3);
                 SetValue(TextProperty, formattedValue);
             }
         }
@@ -238,7 +240,7 @@ namespace PictographControls
             }
         }
 
-        public MonsterToken50mm()
+        public MonsterToken135mm()
         {
             InitializeComponent();
             DataContext = this;

@@ -133,6 +133,18 @@ namespace Pictograph
                     item = new MonsterToken50mm();
                     CreateDragDropWindow((MonsterToken50mm)item);
                 }
+                else if (liMonster100mm.IsSelected)
+                {
+                    itemFormat = "monster100mm";
+                    item = new MonsterToken100mm();
+                    CreateDragDropWindow((MonsterToken100mm)item);
+                }
+                else if (liMonster135mm.IsSelected)
+                {
+                    itemFormat = "monster135mm";
+                    item = new MonsterToken135mm();
+                    CreateDragDropWindow((MonsterToken135mm)item);
+                }
 
                 if (item != null)
                 {
@@ -150,39 +162,57 @@ namespace Pictograph
         private void gViewport_Drop(object sender, DragEventArgs e)
         {
             Point dropPoint = e.GetPosition(gViewport);
+            int deltaX = 0, deltaY = 0, top = 0, left = 0;
+            FrameworkElement item = null;
 
             if (e.Data.GetDataPresent("survivor"))
             {
-                int top, left;
-                SurvivorToken item = e.Data.GetData("survivor") as SurvivorToken;
-
-                top = (((int)dropPoint.Y) / 100) * 100;
-                left = (((int)dropPoint.X) / 100) * 100;
-
-                Canvas.SetTop(item, top);
-                Canvas.SetLeft(item, left);
-                gViewport.Children.Add(item);
-                _dragdropWindow.Close();
+                item = e.Data.GetData("survivor") as FrameworkElement;
+                deltaX = 0;
+                deltaY = 0;
             }
             else if (e.Data.GetDataPresent("monster50mm"))
             {
-                int top, left;
-                MonsterToken50mm item = e.Data.GetData("monster50mm") as MonsterToken50mm;
+                item = e.Data.GetData("monster50mm") as FrameworkElement;
+                deltaX = 200;
+                deltaY = 200;
+            }
+            else if (e.Data.GetDataPresent("monster100mm"))
+            {
+                item = e.Data.GetData("monster100mm") as FrameworkElement;
+                deltaX = 300;
+                deltaY = 300;
+            }
+            else if (e.Data.GetDataPresent("monster135mm"))
+            {
+                item = e.Data.GetData("monster135mm") as FrameworkElement;
+                deltaX = 400;
+                deltaY = 400;
+            }
 
-                top = (((int)dropPoint.Y) / 100) * 100;
-                left = (((int)dropPoint.X) / 100) * 100;
+            top = (((int)dropPoint.Y) / 100) * 100;
+            left = (((int)dropPoint.X) / 100) * 100;
 
-                if (top + 200 > 1600)
-                    top = 1400;
+            if (deltaX > 0)
+            {
+                if (left + deltaX > 2200)
+                    left = 2200 - deltaX;
+            }
 
-                if (left + 200 > 2200)
-                    left = 2000;
+            if (deltaY > 0)
+            {
+                if (top + deltaY > 1600)
+                    top = 1600 - deltaY;
+            }
 
+            if (item != null)
+            {
                 Canvas.SetTop(item, top);
                 Canvas.SetLeft(item, left);
                 gViewport.Children.Add(item);
-                _dragdropWindow.Close();
             }
+
+            _dragdropWindow.Close();
         }
 
         private void gViewport_DragEnter(object sender, DragEventArgs e)
@@ -252,7 +282,18 @@ namespace Pictograph
                 r.Height = 200;
                 r.Fill = new VisualBrush(dragElement);
             }
-
+            else if (dragElement is MonsterToken100mm)
+            {
+                r.Width = 300;
+                r.Height = 300;
+                r.Fill = new VisualBrush(dragElement);
+            }
+            else if(dragElement is MonsterToken135mm)
+            {
+                r.Width = 400;
+                r.Height = 400;
+                r.Fill = new VisualBrush(dragElement);
+            }
 
 
             _dragdropWindow.Content = r;
@@ -329,6 +370,20 @@ namespace Pictograph
                     itemFormat = "monster50mm";
                     item = element;
                     CreateDragDropWindow((MonsterToken50mm)item);
+                    gViewport.Children.Remove(element);
+                }
+                else if (element is MonsterToken100mm)
+                {
+                    itemFormat = "monster100mm";
+                    item = element;
+                    CreateDragDropWindow((MonsterToken100mm)item);
+                    gViewport.Children.Remove(element);
+                }
+                else if (element is MonsterToken135mm)
+                {
+                    itemFormat = "monster135mm";
+                    item = element;
+                    CreateDragDropWindow((MonsterToken135mm)item);
                     gViewport.Children.Remove(element);
                 }
 

@@ -40,14 +40,26 @@
                     <ListView x:Name="listTools" GiveFeedback="gViewport_GiveFeedback" PreviewMouseLeftButtonDown="listTools_PreviewMouseLeftButtonDown" PreviewMouseMove="listTools_PreviewMouseMove">
                         <ListViewItem x:Name="liSurvivor">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="Resources/survivor_token.png"></Image>
+                                <TextBlock FontSize="28" Text="&#xE138;" FontFamily="Segoe UI Symbol" />
                                 <TextBlock Margin="5" VerticalAlignment="Center">Survivor</TextBlock>
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem x:Name="liMonster50mm">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="Resources/monster50mm.png"></Image>
-                                <TextBlock Margin="5" VerticalAlignment="Center">Monster (50mm base)</TextBlock>
+                                <TextBlock FontSize="28" Text="&#xE138;" FontFamily="Segoe UI Symbol" />
+                                <TextBlock Margin="5" VerticalAlignment="Center">Monster, 2x2</TextBlock>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="liMonster100mm">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="28" Text="&#xE138;" FontFamily="Segoe UI Symbol" />
+                                <TextBlock Margin="5" VerticalAlignment="Center">Monster, 3x3</TextBlock>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="liMonster135mm">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="28" Text="&#xE138;" FontFamily="Segoe UI Symbol" />
+                                <TextBlock Margin="5" VerticalAlignment="Center">Monster, 4x4</TextBlock>
                             </StackPanel>
                         </ListViewItem>
                     </ListView>

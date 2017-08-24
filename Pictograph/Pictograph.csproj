@@ -107,12 +107,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\monster50mm.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\survivor_token.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Resource Include="Pictograph.ico" />
     <Content Include="Resources\donate.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

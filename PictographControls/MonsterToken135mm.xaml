@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="PictographControls.SurvivorToken"
+﻿<UserControl x:Class="PictographControls.MonsterToken135mm"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PictographControls"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="100">
+             d:DesignHeight="400" d:DesignWidth="400">
     <UserControl.Resources>
         <SolidColorBrush x:Key="brushTokenFill">#FFE6E6E6</SolidColorBrush>
         <SolidColorBrush x:Key="brushTokenStroke">#FFA916B0</SolidColorBrush>
@@ -26,10 +26,14 @@
         <SolidColorBrush x:Key="brushYellowFill">#FFF5ED44</SolidColorBrush>
         <SolidColorBrush x:Key="brushYellowStroke">#FFA69F0D</SolidColorBrush>
     </UserControl.Resources>
-    <Canvas Height="100" Width="100">
-        <Ellipse MouseRightButtonUp="tokenBox_MouseRightButtonUp" x:Name="tokenBox" Height="100" Width="100" Fill="{StaticResource brushTokenFill}" Stroke="{StaticResource brushTokenStroke}" StrokeThickness="6" />
-        <TextBlock MouseLeftButtonDown="tokenText_MouseLeftButtonDown" MouseLeftButtonUp="tokenText_MouseLeftButtonUp" MouseRightButtonUp="tokenBox_MouseRightButtonUp" x:Name="tokenText" Canvas.Top="25" Height="75" Width="100" TextAlignment="Center" FontSize="48" FontWeight="Bold" FontFamily="Arial" Foreground="{StaticResource brushTokenStroke}" Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:SurvivorToken}}, Path=Text}">
+    <Canvas Height="400" Width="400">
+        <Ellipse MouseRightButtonDown="tokenBox_MouseRightButtonDown" MouseRightButtonUp="tokenBox_MouseRightButtonUp" x:Name="tokenBox" Height="400" Width="400" Fill="{StaticResource brushTokenFill}" Stroke="{StaticResource brushTokenStroke}" StrokeThickness="6" />
+        <TextBlock MouseLeftButtonDown="tokenText_MouseLeftButtonDown" MouseLeftButtonUp="tokenText_MouseLeftButtonUp" MouseRightButtonUp="tokenBox_MouseRightButtonUp" MouseRightButtonDown="tokenBox_MouseRightButtonDown" x:Name="tokenText" Canvas.Top="136" Height="264" Width="400" TextAlignment="Center" FontSize="120" FontWeight="Bold" FontFamily="Arial" Foreground="{StaticResource brushTokenStroke}" Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MonsterToken135mm}}, Path=Text}">
         </TextBlock>
-        <TextBox x:Name="txName" Canvas.Top="25" Height="75" Width="100" MaxLength="2" FontFamily="Arial" FontSize="48" TextAlignment="Center" FontWeight="Bold" Foreground="{StaticResource brushTokenStroke}" Background="Transparent" Visibility="Hidden" KeyUp="txName_KeyUp" LostFocus="txName_LostFocus"></TextBox>
+        <TextBox x:Name="txName" Canvas.Top="136" Height="264" Width="400" MaxLength="4" FontFamily="Arial" FontSize="120" TextAlignment="Center" FontWeight="Bold" Foreground="{StaticResource brushTokenStroke}" Background="Transparent" Visibility="Hidden" KeyUp="txName_KeyUp" LostFocus="txName_LostFocus"></TextBox>
+        <TextBlock MouseRightButtonDown="tokenBox_MouseRightButtonDown" MouseRightButtonUp="tokenBox_MouseRightButtonUp" x:Name="fNorth" Canvas.Top="0" Canvas.Left="165" Foreground="{StaticResource brushTokenStroke}" FontSize="72" Text="&#xE018;" FontFamily="Segoe UI Symbol" Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MonsterToken135mm}}, Path=FacingNorth}" />
+        <TextBlock MouseRightButtonDown="tokenBox_MouseRightButtonDown" MouseRightButtonUp="tokenBox_MouseRightButtonUp" x:Name="fEast" Canvas.Top="156" Canvas.Left="320" Foreground="{StaticResource brushTokenStroke}" FontSize="72" Text="&#xE017;" FontFamily="Segoe UI Symbol" Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MonsterToken135mm}}, Path=FacingEast}" />
+        <TextBlock MouseRightButtonDown="tokenBox_MouseRightButtonDown" MouseRightButtonUp="tokenBox_MouseRightButtonUp" x:Name="fWest" Canvas.Top="156" Canvas.Left="10" Foreground="{StaticResource brushTokenStroke}" FontSize="72" Text="&#xE016;" FontFamily="Segoe UI Symbol" Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MonsterToken135mm}}, Path=FacingWest}" />
+        <TextBlock MouseRightButtonDown="tokenBox_MouseRightButtonDown" MouseRightButtonUp="tokenBox_MouseRightButtonUp" x:Name="fSouth" Canvas.Top="296" Canvas.Left="165" Foreground="{StaticResource brushTokenStroke}" FontSize="72" Text="&#xE019;" FontFamily="Segoe UI Symbol" Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:MonsterToken135mm}}, Path=FacingSouth}" />
     </Canvas>
 </UserControl>
