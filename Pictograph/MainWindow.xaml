@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Pictograph"
         xmlns:puc="clr-namespace:PictographControls;assembly=PictographControls"
         mc:Ignorable="d"
-        Title="Pictograph" Height="600" Width="800"
+        Title="Pictograph" Height="600" Width="800" Icon="/Pictograph;component/Resources/pictograph.png"
         KeyUp="Window_KeyUp">
     <Window.Resources>
     </Window.Resources>
@@ -17,7 +17,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <ScrollViewer x:Name="sViewport" Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Canvas Height="1600" Width="2200" x:Name="gViewport" Drop="gViewport_Drop" GiveFeedback="gViewport_GiveFeedback" PreviewMouseLeftButtonDown="listTools_PreviewMouseLeftButtonDown" PreviewMouseMove="gViewport_PreviewMouseMove" DragEnter="gViewport_DragEnter" AllowDrop="true">
+            <Canvas Height="1600" Width="2200" x:Name="gViewport" Drop="gViewport_Drop" GiveFeedback="gViewport_GiveFeedback" PreviewMouseLeftButtonDown="listTools_PreviewMouseLeftButtonDown" PreviewMouseMove="gViewport_PreviewMouseMove" DragEnter="gViewport_DragEnter" DragOver="gViewport_DragOver" PreviewDragOver="gViewport_DragOver" AllowDrop="true" Background="Transparent">
                 <Canvas.LayoutTransform>
                     <ScaleTransform ScaleX="{Binding ElementName=floorScaleSlider,Path=Value}" ScaleY="{Binding ElementName=floorScaleSlider,Path=Value}" />
                 </Canvas.LayoutTransform>
@@ -60,6 +60,12 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontSize="28" Text="&#xE138;" FontFamily="Segoe UI Symbol" />
                                 <TextBlock Margin="5" VerticalAlignment="Center">Monster, 4x4</TextBlock>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="liAnnotation">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="28" Text="&#xE138;" FontFamily="Segoe UI Symbol" />
+                                <TextBlock Margin="5" VerticalAlignment="Center">Text note</TextBlock>
                             </StackPanel>
                         </ListViewItem>
                     </ListView>

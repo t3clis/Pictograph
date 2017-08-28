@@ -48,6 +48,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Annotation.xaml.cs">
+      <DependentUpon>Annotation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MonsterToken100mm.xaml.cs">
       <DependentUpon>MonsterToken100mm.xaml</DependentUpon>
     </Compile>
@@ -60,6 +63,10 @@
     <Compile Include="SurvivorToken.xaml.cs">
       <DependentUpon>SurvivorToken.xaml</DependentUpon>
     </Compile>
+    <Page Include="Annotation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MonsterToken100mm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -8,12 +8,12 @@
         Title="About Pictograph" Height="500" Width="350" ResizeMode="NoResize">
     <StackPanel>
         <Rectangle Height="20" />
-        <Image Source="Resources/pictograph.png" Height="100" Width="100"></Image>
+        <Image Source="/Pictograph;component/Resources/pictograph.png" Height="100" Width="100"></Image>
         <Rectangle Height="20" />
         <TextBlock Margin="10" x:Name="txVersion" TextWrapping="Wrap" FontSize="10" FontFamily="Arial" />
         <Rectangle Height="8" />
         <TextBlock TextWrapping="Wrap" Margin="10"  FontSize="10" FontFamily="Arial" Text="This is an ENTIRELY UNOFFICIAL fan project, in no way endorsed by Adam Poots games. If you want to contribute to Pictograph, please consider donating using the link below." />
         <Rectangle Height="30" />
-        <Image Source="Resources/donate.gif" Height="35" MouseLeftButtonUp="Image_MouseLeftButtonUp" />
+        <Image Source="/Pictograph;component/Resources/donate.gif" Height="40" MouseLeftButtonUp="Image_MouseLeftButtonUp" />
     </StackPanel>
 </Window>

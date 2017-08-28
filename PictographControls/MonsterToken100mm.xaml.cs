@@ -292,7 +292,8 @@ namespace PictographControls
                 tokenText.Visibility = Visibility.Hidden;
                 txName.Visibility = Visibility.Visible;
                 txName.Text = Text;
-                txName.SelectAll();
+                txName.Select(0, txName.Text.Length);
+                txName.Focus();
             }
 
         }

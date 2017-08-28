@@ -26,6 +26,8 @@ namespace Pictograph
 
         private Point _toolDragStart;
         private Window _dragdropWindow;
+        private Visual _dragged;
+        private int _survivorsInPlace;
 
         public string SaveDirectory { get; set; }
 
@@ -33,7 +35,7 @@ namespace Pictograph
         {
             InitializeComponent();
             SaveDirectory = GetSaveDirectory();
-            Icon = new BitmapImage(new Uri("Resources/Pictograph.png", UriKind.Relative));
+            _survivorsInPlace = 0;
 
             for (int i = 0; i < 22; i++)
                 for (int j = 0; j < 16; j++)
@@ -126,24 +128,35 @@ namespace Pictograph
                     itemFormat = "survivor";
                     item = new SurvivorToken();
                     CreateDragDropWindow((SurvivorToken)item);
+                    _dragged = (SurvivorToken)item;
                 }
                 else if (liMonster50mm.IsSelected)
                 {
                     itemFormat = "monster50mm";
                     item = new MonsterToken50mm();
                     CreateDragDropWindow((MonsterToken50mm)item);
+                    _dragged = (MonsterToken50mm)item;
                 }
                 else if (liMonster100mm.IsSelected)
                 {
                     itemFormat = "monster100mm";
                     item = new MonsterToken100mm();
                     CreateDragDropWindow((MonsterToken100mm)item);
+                    _dragged = (MonsterToken100mm)item;
                 }
                 else if (liMonster135mm.IsSelected)
                 {
                     itemFormat = "monster135mm";
                     item = new MonsterToken135mm();
                     CreateDragDropWindow((MonsterToken135mm)item);
+                    _dragged = (MonsterToken135mm)item;
+                }
+                else if (liAnnotation.IsSelected)
+                {
+                    itemFormat = "annotation";
+                    item = new Annotation();
+                    CreateDragDropWindow((Annotation)item);
+                    _dragged = (Annotation)item;
                 }
 
                 if (item != null)
@@ -155,6 +168,8 @@ namespace Pictograph
 
                     if (de == DragDropEffects.None)
                         _dragdropWindow?.Close();
+                    else if (item is Annotation)
+                        ((Annotation)item).GoToEdit();
                 }
             }
         }
@@ -162,7 +177,8 @@ namespace Pictograph
         private void gViewport_Drop(object sender, DragEventArgs e)
         {
             Point dropPoint = e.GetPosition(gViewport);
-            int deltaX = 0, deltaY = 0, top = 0, left = 0;
+            int deltaX = 0, deltaY = 0, top = 0, left = 0, zindex = 0;
+            bool snap = true;
             FrameworkElement item = null;
 
             if (e.Data.GetDataPresent("survivor"))
@@ -170,6 +186,7 @@ namespace Pictograph
                 item = e.Data.GetData("survivor") as FrameworkElement;
                 deltaX = 0;
                 deltaY = 0;
+                ((SurvivorToken)item).GetNewLook(_survivorsInPlace++);
             }
             else if (e.Data.GetDataPresent("monster50mm"))
             {
@@ -189,9 +206,17 @@ namespace Pictograph
                 deltaX = 400;
                 deltaY = 400;
             }
+            else if (e.Data.GetDataPresent("annotation"))
+            {
+                item = e.Data.GetData("annotation") as FrameworkElement;
+                deltaX = 0;
+                deltaY = 0;
+                snap = false;
+                zindex = 1;
+            }
 
-            top = (((int)dropPoint.Y) / 100) * 100;
-            left = (((int)dropPoint.X) / 100) * 100;
+            top = snap ? (((int)dropPoint.Y) / 100) * 100 : (int)dropPoint.Y;
+            left = snap ? (((int)dropPoint.X) / 100) * 100 : (int)dropPoint.X;
 
             if (deltaX > 0)
             {
@@ -209,6 +234,7 @@ namespace Pictograph
             {
                 Canvas.SetTop(item, top);
                 Canvas.SetLeft(item, left);
+                Canvas.SetZIndex(item, zindex);
                 gViewport.Children.Add(item);
             }
 
@@ -221,6 +247,8 @@ namespace Pictograph
             {
                 e.Effects = DragDropEffects.None;
             }
+            else
+                e.Effects = DragDropEffects.Move;
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
@@ -251,14 +279,62 @@ namespace Pictograph
             Win32Point w32Mouse = new Win32Point();
             GetCursorPos(ref w32Mouse);
 
-            this._dragdropWindow.Left = w32Mouse.X;
-            this._dragdropWindow.Top = w32Mouse.Y;
+
+            bool keyUp, keyDown, keyLeft, keyRight, update;
+            keyUp = Keyboard.IsKeyDown(Key.Up);
+            keyDown = Keyboard.IsKeyDown(Key.Down);
+            keyLeft = Keyboard.IsKeyDown(Key.Left);
+            keyRight = Keyboard.IsKeyDown(Key.Right);
+            update = keyUp || keyLeft || keyRight || keyDown;
+
+            if (update)
+            {
+                MonsterToken50mm m50 = _dragged as MonsterToken50mm;
+                MonsterToken100mm m100 = _dragged as MonsterToken100mm;
+                MonsterToken135mm m135 = _dragged as MonsterToken135mm;
+                MonsterFacing direction = MonsterFacing.South;
+
+                if (keyUp)
+                    direction = MonsterFacing.North;
+                if (keyLeft)
+                    direction = MonsterFacing.West;
+                if (keyRight)
+                    direction = MonsterFacing.East;
+                if (keyDown)
+                    direction = MonsterFacing.South;
+
+                if (m50 != null)
+                {
+                    m50.Facing = direction;
+                    ((Rectangle)_dragdropWindow.Content).Fill = new VisualBrush(m50);
+                }
+
+                if (m100 != null)
+                {
+                    m100.Facing = direction;
+                    ((Rectangle)_dragdropWindow.Content).Fill = new VisualBrush(m100);
+                }
+
+                if (m135 != null)
+                {
+                    m135.Facing = direction;
+                    ((Rectangle)_dragdropWindow.Content).Fill = new VisualBrush(m135);
+                }
+
+                ScaleTransform scale = new ScaleTransform(floorScaleSlider.Value, floorScaleSlider.Value);
+                ((Rectangle)_dragdropWindow.Content).LayoutTransform = scale;
+                ((Rectangle)_dragdropWindow.Content).UpdateLayout();
+
+            }
+
+            _dragdropWindow.Left = w32Mouse.X;
+            _dragdropWindow.Top = w32Mouse.Y;
         }
 
 
         private void CreateDragDropWindow(Visual dragElement)
         {
-            this._dragdropWindow = new Window();
+            _dragdropWindow = new Window();
             _dragdropWindow.WindowStyle = WindowStyle.None;
             _dragdropWindow.AllowsTransparency = true;
             _dragdropWindow.AllowDrop = false;
@@ -288,11 +364,22 @@ namespace Pictograph
                 r.Height = 300;
                 r.Fill = new VisualBrush(dragElement);
             }
-            else if(dragElement is MonsterToken135mm)
+            else if (dragElement is MonsterToken135mm)
             {
                 r.Width = 400;
                 r.Height = 400;
                 r.Fill = new VisualBrush(dragElement);
+            }
+            else if (dragElement is Annotation)
+            {
+                r.Width = ((Annotation)dragElement).ActualWidth;
+                if (r.Width == 0)
+                    r.Width = 120;
+                r.Height = ((Annotation)dragElement).ActualHeight;
+                if (r.Height == 0)
+                    r.Height = 30;
+                r.Fill = new VisualBrush(dragElement);
+
             }
 
 
@@ -331,6 +418,7 @@ namespace Pictograph
             result |= e.Data.GetDataPresent("monster50mm");
             result |= e.Data.GetDataPresent("monster100mm");
             result |= e.Data.GetDataPresent("monster135mm");
+            result |= e.Data.GetDataPresent("annotation");
 
             return result;
         }
@@ -363,6 +451,8 @@ namespace Pictograph
                     itemFormat = "survivor";
                     item = element;
                     CreateDragDropWindow((SurvivorToken)item);
+                    _dragged = (SurvivorToken)item;
+                    _survivorsInPlace--;
                     gViewport.Children.Remove(element);
                 }
                 else if (element is MonsterToken50mm)
@@ -370,6 +460,7 @@ namespace Pictograph
                     itemFormat = "monster50mm";
                     item = element;
                     CreateDragDropWindow((MonsterToken50mm)item);
+                    _dragged = (MonsterToken50mm)item;
                     gViewport.Children.Remove(element);
                 }
                 else if (element is MonsterToken100mm)
@@ -377,6 +468,7 @@ namespace Pictograph
                     itemFormat = "monster100mm";
                     item = element;
                     CreateDragDropWindow((MonsterToken100mm)item);
+                    _dragged = (MonsterToken100mm)item;
                     gViewport.Children.Remove(element);
                 }
                 else if (element is MonsterToken135mm)
@@ -384,6 +476,15 @@ namespace Pictograph
                     itemFormat = "monster135mm";
                     item = element;
                     CreateDragDropWindow((MonsterToken135mm)item);
+                    _dragged = (MonsterToken135mm)item;
+                    gViewport.Children.Remove(element);
+                }
+                else if (element is Annotation)
+                {
+                    itemFormat = "annotation";
+                    item = element;
+                    CreateDragDropWindow((Annotation)item);
+                    _dragged = (Annotation)item;
                     gViewport.Children.Remove(element);
                 }
 
@@ -422,6 +523,11 @@ namespace Pictograph
         {
             AboutWindow window = new AboutWindow();
             window.ShowDialog();
+        }
+
+        private void gViewport_DragOver(object sender, DragEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }
