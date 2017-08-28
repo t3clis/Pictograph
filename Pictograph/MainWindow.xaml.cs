@@ -27,7 +27,7 @@ namespace Pictograph
         private Point _toolDragStart;
         private Window _dragdropWindow;
         private Visual _dragged;
-        private int _survivorsInPlace;
+        private TokenColor _nextColor;
 
         public string SaveDirectory { get; set; }
 
@@ -35,7 +35,7 @@ namespace Pictograph
         {
             InitializeComponent();
             SaveDirectory = GetSaveDirectory();
-            _survivorsInPlace = 0;
+            _nextColor = TokenColor.Blue;
 
             for (int i = 0; i < 22; i++)
                 for (int j = 0; j < 16; j++)
@@ -127,6 +127,35 @@ namespace Pictograph
                 {
                     itemFormat = "survivor";
                     item = new SurvivorToken();
+
+                    ((SurvivorToken)item).Appearance = _nextColor;
+
+                    if (_nextColor != TokenColor.Token)
+                    {
+                        switch (_nextColor)
+                        {
+                            case TokenColor.Blue:
+                                _nextColor = TokenColor.Brown;
+                                ((SurvivorToken)item).Text = "A";
+                                break;
+                            case TokenColor.Brown:
+                                _nextColor = TokenColor.Green;
+                                ((SurvivorToken)item).Text = "B";
+                                break;
+                            case TokenColor.Green:
+                                _nextColor = TokenColor.Yellow;
+                                ((SurvivorToken)item).Text = "C";
+                                break;
+                            case TokenColor.Yellow:
+                                ((SurvivorToken)item).Text = "D";
+                                _nextColor = TokenColor.Token;
+                                break;
+                            default:
+                                _nextColor = TokenColor.Token;
+                                break;
+                        }
+                    }
+
                     CreateDragDropWindow((SurvivorToken)item);
                     _dragged = (SurvivorToken)item;
                 }
@@ -186,7 +215,6 @@ namespace Pictograph
                 item = e.Data.GetData("survivor") as FrameworkElement;
                 deltaX = 0;
                 deltaY = 0;
-                ((SurvivorToken)item).GetNewLook(_survivorsInPlace++);
             }
             else if (e.Data.GetDataPresent("monster50mm"))
             {
@@ -452,7 +480,6 @@ namespace Pictograph
                     item = element;
                     CreateDragDropWindow((SurvivorToken)item);
                     _dragged = (SurvivorToken)item;
-                    _survivorsInPlace--;
                     gViewport.Children.Remove(element);
                 }
                 else if (element is MonsterToken50mm)

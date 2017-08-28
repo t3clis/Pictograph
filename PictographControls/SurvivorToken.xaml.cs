@@ -137,12 +137,6 @@ namespace PictographControls
             Appearance = TokenColor.Token;
         }
 
-        public void GetNewLook(int survivorsAlreadyPlaced)
-        {
-            TokenColor newLook = (TokenColor)(survivorsAlreadyPlaced % Enum.GetValues(typeof(TokenColor)).Length);
-            Appearance = newLook;
-        }
-
         private void tokenBox_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             int appearanceValue = (int)Appearance;
