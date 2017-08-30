@@ -320,6 +320,7 @@ namespace Pictograph
                 MonsterToken50mm m50 = _dragged as MonsterToken50mm;
                 MonsterToken100mm m100 = _dragged as MonsterToken100mm;
                 MonsterToken135mm m135 = _dragged as MonsterToken135mm;
+                Annotation note = _dragged as Annotation;
                 MonsterFacing direction = MonsterFacing.South;
 
                 if (keyUp)
@@ -349,8 +350,41 @@ namespace Pictograph
                     ((Rectangle)_dragdropWindow.Content).Fill = new VisualBrush(m135);
                 }
 
+                if (note != null)
+                {
+                    bool changed = false;
+
+                    if (note.TextOrientation == TextDirection.LeftToRight)
+                    {
+                        if (keyDown)
+                        {
+                            note.TextOrientation = TextDirection.TopToBottom;
+                            ((Rectangle)_dragdropWindow.Content).Fill = new VisualBrush(note);
+                            changed = true;
+                        }
+                    }
+                    else if (note.TextOrientation == TextDirection.TopToBottom)
+                    {
+                        if (keyRight)
+                        {
+                            note.TextOrientation = TextDirection.LeftToRight;
+                            ((Rectangle)_dragdropWindow.Content).Fill = new VisualBrush(note);
+                            changed = true;
+                        }
+                    }
+
+                    if (changed)
+                    {
+                        Rectangle r = (Rectangle)_dragdropWindow.Content;
+                        double width = r.ActualHeight;
+                        double height = r.ActualWidth;
+
+                        r.Width = width;
+                        r.Height = height;
+                    }
+                }
+
                 ScaleTransform scale = new ScaleTransform(floorScaleSlider.Value, floorScaleSlider.Value);
-                ((Rectangle)_dragdropWindow.Content).LayoutTransform = scale;
                 ((Rectangle)_dragdropWindow.Content).UpdateLayout();
 
             }
@@ -406,6 +440,16 @@ namespace Pictograph
                 r.Height = ((Annotation)dragElement).ActualHeight;
                 if (r.Height == 0)
                     r.Height = 30;
+
+                if (((Annotation)dragElement).TextOrientation == TextDirection.TopToBottom)
+                {
+                    double width = r.Height;
+                    double height = r.Width;
+
+                    r.Width = width;
+                    r.Height = height;
+                }
+
                 r.Fill = new VisualBrush(dragElement);
 
             }
