@@ -308,12 +308,40 @@ namespace Pictograph
             GetCursorPos(ref w32Mouse);
 
 
-            bool keyUp, keyDown, keyLeft, keyRight, update;
+            bool keyUp, keyDown, keyLeft, keyRight, keyPlus, keyMinus, update;
             keyUp = Keyboard.IsKeyDown(Key.Up);
             keyDown = Keyboard.IsKeyDown(Key.Down);
             keyLeft = Keyboard.IsKeyDown(Key.Left);
             keyRight = Keyboard.IsKeyDown(Key.Right);
+            keyPlus = Keyboard.IsKeyDown(Key.Add);
+            keyMinus = Keyboard.IsKeyDown(Key.Subtract);
             update = keyUp || keyLeft || keyRight || keyDown;
+
+            if ((keyPlus || keyMinus) && _dragged is Annotation)
+            {
+                double fontSize = ((Annotation)_dragged).FontSize;
+                double width = ((Rectangle)_dragdropWindow.Content).Width;
+                double height = ((Rectangle)_dragdropWindow.Content).Height;
+
+                if (keyPlus)
+                {
+                    fontSize += (fontSize * 0.1);
+                    height += (height * 0.1);
+                    width += (width * 0.1);
+                }
+
+                if (keyMinus)
+                {
+                    fontSize -= (fontSize * 0.1);
+                    height -= (height * 0.1);
+                    width -= (width * 0.1);
+                }
+
+                ((Annotation)_dragged).FontSize = fontSize;
+                ((Rectangle)_dragdropWindow.Content).Width = width;
+                ((Rectangle)_dragdropWindow.Content).Height = height;
+                ((Rectangle)_dragdropWindow.Content).Fill = new VisualBrush(_dragged);
+            }
 
             if (update)
             {

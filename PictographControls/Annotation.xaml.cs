@@ -24,6 +24,12 @@ namespace PictographControls
         BadNews
     }
 
+    public enum TextDirection
+    {
+        LeftToRight,
+        TopToBottom
+    }
+
     /// <summary>
     /// Interaction logic for Annotation.xaml
     /// </summary>
@@ -31,10 +37,53 @@ namespace PictographControls
     {
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(Annotation));
         public static readonly DependencyProperty ColourSchemeProperty = DependencyProperty.Register("ColourScheme", typeof(AnnotationColourScheme), typeof(Annotation));
+        public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.Register("TextOrientation", typeof(TextDirection), typeof(Annotation));
+
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
+        }
+
+        public new double FontSize
+        {
+            get { return tNote.FontSize; }
+            set
+            {
+                tNote.FontSize = value;
+                txNote.FontSize = value;
+            }
+        }
+
+        public TextDirection TextOrientation
+        {
+            get { return (TextDirection)GetValue(TextOrientationProperty); }
+            set
+            {
+                TextDirection current = TextOrientation;
+                if (value != current)
+                {
+                    if (LayoutTransform != null && LayoutTransform is RotateTransform)
+                    {
+                        double angle = ((RotateTransform)LayoutTransform).Angle;
+                        if (value == TextDirection.LeftToRight)
+                            angle += 90.0;
+                        else
+                            angle -= 90.0;
+                        ((RotateTransform)LayoutTransform).Angle = angle;
+                    }
+                    else
+                    {
+                        RotateTransform rotation = new RotateTransform();
+                        rotation.Angle = value == TextDirection.LeftToRight ? 0.0 : -90.0;
+                        LayoutTransform = rotation;
+                    }
+                    
+
+                    SetValue(TextOrientationProperty, value);
+                    UpdateLayout();
+                }
+            }
         }
 
         public AnnotationColourScheme ColourScheme
