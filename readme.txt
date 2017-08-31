@@ -16,6 +16,10 @@ Copy the entire "Pictograph" folder in the zip file anywhere on your hard drive,
 Change log:
 -----------
 
+* 0.5 :
+	- Added Annotations to be dragged and dropped, changing text orientation, color and font size
+	- Fixed issue with survivor tokens taking inappropriate colors
+	- First four survivor tokens placed now get named automatically A, B, C and D with four different colors.
 * 0.4 :
 	- Added 3x3 and 4x4 Monster tokens and Annotations
 	- Now, when dragging a Monster Token, it is possible to press a D-Pad key to change monster facing while dragging
@@ -46,5 +50,9 @@ Right click on a survivor, monster or annotation to change its color scheme.
 Left click on an annotation to change its text. When you are done, click anywhere else to commit changes.
 
 Right click, hold 1 second and release on a monster token to change its facing.
+
+Drag and drop annotations to the showdown board to add annotations to any location. You can left click an annotation to change its text, while right clicking it will change its color scheme.
+
+While dragging an annotation, you can press D-Pad Up and Right to change text orientation, while you can press NumPad + or NumPad - to increase or decrease font size.
 
 Press the "Snap" button or F2 to take a snapshot of the current board viewport. Snapshots are saved to "<Pictograph folder>\Pictograph Snapshots" folder.
